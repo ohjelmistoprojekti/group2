@@ -1,6 +1,7 @@
 <?php
 	error_reporting(E_ALL);
 	ini_set('display_errors', 'on');
+	$debug = true;
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -35,7 +36,11 @@
 
 		if($_POST != null)
 		{
-			helperClass::printR($_POST);
+			$userdata['username'] = $_POST['username'];
+			$userdata['passwd'] = $_POST['passwd'];
+
+			if($debug)
+				helperClass::printR($userdata);
 		}
 	?>
 	</body>
