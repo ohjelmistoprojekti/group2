@@ -16,12 +16,16 @@
 </fieldset>
 </form>
 <?
+	include 'validator.php';
+	include 'saltEnc.php';
 	if($_POST != null)
 	{
 		$userdata['username'] = $_POST['username'];
+		validate($userdata['username']);
 		$userdata['password'] = $_POST['password'];
 		echo "<pre>";
 		print_r($userdata);
+		saltEnc($userdata['password']);
 		echo "</pre>";
 	}
 ?>
