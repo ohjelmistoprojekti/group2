@@ -10,7 +10,7 @@ class userValidation {
 	public function Validate() {
 	$username = $_POST['username'];
 			$salt = 'abg4';
-					$pw_hashed = hash('sha256' ,$salt.$defaultPassword);					
+					$pw_hashed = hash('sha256' ,$salt.$this->defaultPassword);					
 	
 		if (filter_var($username, FILTER_VALIDATE_EMAIL) && 
 			($username == $this->defaultLogin) && ($username !=NULL) &&($pw_hashed == hash('sha256', $salt.$_POST['password'])) {
@@ -20,6 +20,11 @@ class userValidation {
 		}
 	}
 }
+
+$user = new userValidation();
+	$user->Validate();
+		
+
 ?>
 </body>
 </html>
