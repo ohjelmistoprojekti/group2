@@ -1,45 +1,30 @@
 <?
-function validate($x)
-{
-$email = $x;
+	$invalidcredentials;
+	$loginsuccess;
+	function validator($user, $pass)
+	{
+		$con = mysql_connect("10.177.3.206", "miwanski", "doofLLAB2601");
+		$db_select = mysql_select_db("Group2", $con);
+		$username = $user;
+		$pw = $pass;
+		$salt = 'oprj';
+		$pw_hash = sha1($salt.$pw);
+		$sql = "SELECT * FROM members
+				WHERE email = '$username'";
+		$result = mysql_query($sql, $con);
 
-$dots = 0;
-$atsign = 0;
-
- 
-
-for ($k=0; $k < strlen($email); $k++)
-
-{
-    if ($email[$k] == '@')
-
-    {
-
-	  $atsign = 1;
-
-      break;
-
-    }
-}
-
-for ($k=0; $k < strlen($email); $k++)
-{
-    if ($email[$k] == '.')
-
-    {
-
-      $dots += 1;
-
-      break;
-
-    }
-}
-
-if ($dots < 1 || $atsign == 0)
-
-   echo "<br> This is not a valid email address";
-else
-
-   echo "<br> This is a valid email address";
-}
+		$userData = mysql_fetch_array($result, MYSQL_ASSOC);
+		if($pw_hash == $userData['password'])
+		{
+			return 1;
+			// header('Location: home_success.php');
+		}
+		else
+		{
+			return 0;
+		}
+		mysql_close($con);
+	}
+	
+	
 ?>
