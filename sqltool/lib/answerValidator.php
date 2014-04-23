@@ -62,10 +62,9 @@
 		//					3) QuestionId
 		//	Modifications:	Initial Commit 090414 Jalakotila
 
-		public function validateAnswer($json)
+		public function validateAnswer($data)
 		{
-			$data = json_decode($json);
-		
+			
 		
 			//Check the MySQL & MSSQL Connection
 			//If no connection, connect
