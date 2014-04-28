@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	/***********************************************/
 	/*												/
 	/*		  Class for answer validating			/
@@ -238,7 +238,7 @@
 			$this->mysqlConnection->close();
 			$this->testDataBaseConnection->close();
 			
-			echo json_encode($answerdata);
+			echo $answerdata['state'];
 			
 		}
 		
